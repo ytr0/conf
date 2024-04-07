@@ -1,3 +1,5 @@
 [user]
 	email = yu20@iamas.ac.jp
 	name = ytr0
+[alias]
+	ac = !git add -A && aicommits -a

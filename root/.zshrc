@@ -141,7 +141,7 @@ alias glog='git log --oneline --graph --decorate'
 alias gstash='git stash'
 alias gstashp='git stash pop'
 
-alias gac='!git add -A && aicommits -a'
+alias gac='git add -A && aicommits -a'
 #git config --global alias.ac '!git add -A && aicommits -a'
 
 alias dbi='docker-compose build --parallel'
