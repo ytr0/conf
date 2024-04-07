@@ -42,12 +42,7 @@ alias c.='code .'
 alias cjson='vi $HOME/Library/Application\ Support/Code/User/settings.json'
 alias mk='make'
 
-#git
-alias g='git'
-alias gs='git status'
-alias gc='git commit -am'
-alias gp='git push -u origin main'
-alias gr='git remote set-url origin git@github.com:ytr0/mqtt-ws-app.git'
+
 
 #cargo
 export PATH="$HOME/.cargo/bin:$PATH"
@@ -84,7 +79,6 @@ alias mydb='psql -h db.gqceuxncplqmklqolvrg.supabase.co -p 5432 -d postgres -U p
 #prisma
 alias mig='npx prisma migrate dev --name init' #prisma.schemeからdb schemeを作る
 alias prst='npx prisma studio'
-alias ts='npx ts-node'
 
 #magick convert *.HEIC jpgs/*.jpg
 #magick convert -delay 10 -loop 3870 IMG_*.HEIC test/*.jpg
@@ -96,6 +90,7 @@ alias htoj="magick mogrify -format jpg *.heic"
 
 #for convenient setup
 alias vi="vim"
+alias vimrc="code ~/.vimrc"
 alias zsh='code ~/.zshrc'
 alias reload='source ~/.zshrc && exec zsh -l'
 alias update='cp ~/.zshrc ~/ws/settings/zshrc/.zshrc; cp ~/.config/karabiner/karabiner.json ~/ws/settings/karabiner/karabiner.json; ghp settings'
@@ -110,24 +105,64 @@ alias p="pushd"
 alias rm='rm -rf'
 alias zip.='zip -r "$(basename $(pwd)).zip" ./*'
 
+
+if [[ -x `which colordiff` ]]; then
+  alias diff='colordiff -u'
+else
+  alias diff='diff -u'
+fi
 #docker
 #export DOCKER_BUILDKIT=1
 # export COMPOSE_DOCKER_CLI_BUILD=1
 
+
+# git init
+# git add README.md
+# git commit -m "first commit"
+# git branch -M main
+# git remote add origin https://github.com/ytr0/bun-docker.git
+# git remote set-url origin git@github.com:ytr0/bun-docker.git
+# git push --set-upstream origin main
+
+#git
+alias gs='git status'
+alias ga='git add .'
+alias gc='git commit -am'
+alias gp='git push -u origin main'
+
+alias gr='git remote set-url origin git@github.com:ytr0/mqtt-ws-app.git'
+
+alias gb='git branch'
+alias gco='git checkout'
+alias gcb='git checkout -b'
+alias gm='git merge'
+alias gd='git diff'
+alias glog='git log --oneline --graph --decorate'
+alias gstash='git stash'
+alias gstashp='git stash pop'
+
+
+
 alias dbi='docker-compose build --parallel'
-alias dup='docker-compose up'
-#alias dup!='docker-compose up --build -d'
-alias dup!='dbi && dup'
+alias dbi!='docker-compose build --parallel --no-cache'
+alias dup='dbi && docker-compose up --build'
+alias dup!='dbi! && docker-compose up --build'
+# alias dup='dbi && dup'
+# alias dup!='dbi! && dup!'
 alias dps='docker-compose ps'
 alias down='docker-compose down'
 alias down!='docker-compose down --rmi all --remove-orphans'
 alias downn!='docker-compose down --rmi all --volumes --remove-orphans'
+alias dor='down! && dup'
+alias dor!='down! && dup!'
 alias dst='docker stop $(docker ps -q)'
 dex() {
     docker exec -it $1 bash
 }
 alias tup='tilt up'
 alias town='tilt down'
+
+alias tailscale="/Applications/Tailscale.app/Contents/MacOS/Tailscale"
 
 #for git
 #alias setup-git='git config --global user.name "ytr0221";git config --global user.email ytr0.ymail.ne.jp'
@@ -188,31 +223,31 @@ dl() {
 gpt() {
   open -a Google\ Chrome https://chat.openai.com/chat
 }
-gm() {
-	local str opt
+# gm() {
+# 	local str opt
   
-  if [ "$2" != "" ]; then
-    echo $2 "->" $1
-		#opt="${opt}&q=${str}"
-    #open -a Google\ Chrome https://www.google.com/maps/search/$opt
-    opt="?api=1&origin={$1}&destination={$2}"
-    open -a Google\ Chrome https://www.google.com/maps/dir/$opt
-    return 0
+#   if [ "$2" != "" ]; then
+#     echo $2 "->" $1
+# 		#opt="${opt}&q=${str}"
+#     #open -a Google\ Chrome https://www.google.com/maps/search/$opt
+#     opt="?api=1&origin={$1}&destination={$2}"
+#     open -a Google\ Chrome https://www.google.com/maps/dir/$opt
+#     return 0
 
-  elif [ $# != 0 ]; then
-		for i in $*; do
-			str="$str${str:++}$i"
-		done
-		value="${str}"
+#   elif [ $# != 0 ]; then
+# 		for i in $*; do
+# 			str="$str${str:++}$i"
+# 		done
+# 		value="${str}"
     
-    echo $1
-		opt='search?num=100'
-		opt="${opt}&q=${str}"
-    open -a Google\ Chrome https://www.google.com/maps/search/$opt
-    return 0
-	fi
+#     echo $1
+# 		opt='search?num=100'
+# 		opt="${opt}&q=${str}"
+#     open -a Google\ Chrome https://www.google.com/maps/search/$opt
+#     return 0
+# 	fi
 
-}
+# }
 
 killp() {
   if [ $# -eq 0 ]; then
@@ -470,3 +505,10 @@ if [ -f '/Users/work/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/work
 # export PYENV_ROOT="$HOME/.pyenv"
 # command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
 # eval "$(pyenv init -)"
+
+# bun completions
+[ -s "/Users/work/.bun/_bun" ] && source "/Users/work/.bun/_bun"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"

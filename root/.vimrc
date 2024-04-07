@@ -78,3 +78,5 @@ nnoremap cw ciw
 
 " 行末までヤンク
 nnoremap Y y$
+
+noremap ;; '.
