@@ -1,9 +1,9 @@
-.PHONY: test run gp
+.PHONY: test cp gp
 m ?= "Default commit message"
 
 test:
 	@echo "Hello, World"
-run:
+cp:
 	@sh update-dot-config.sh
 gp:
 	git add .
