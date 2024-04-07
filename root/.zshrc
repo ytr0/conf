@@ -126,11 +126,20 @@ fi
 
 #git
 alias gs='git status'
+alias gpl='git pull'
 alias ga='git add .'
-# alias gc='git commit -am'
-alias gp='git push -u origin main'
 
-alias gr='git remote set-url origin git@github.com:ytr0/mqtt-ws-app.git'
+# alias gc='git commit -am'
+alias gc='git add -A && aicommits -a'
+alias gp='git push -u origin'
+alias gcp='gc && gp'
+
+# git remote URL変更
+gr() {
+  git remote set-url origin git@github.com:ytr0/"$1".git
+}
+#git rm -r --cached {file_path} コミット時キャッシュの削除 / .gitignoreに追加したあと
+alias gdel='git rm -r --cached' 
 
 alias gb='git branch'
 alias gco='git checkout'
@@ -140,8 +149,6 @@ alias gd='git diff'
 alias glog='git log --oneline --graph --decorate'
 alias gstash='git stash'
 alias gstashp='git stash pop'
-
-alias gc='git add -A && aicommits -a'
 #git config --global alias.ac '!git add -A && aicommits -a'
 
 alias dbi='docker-compose build --parallel'
