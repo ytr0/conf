@@ -188,6 +188,9 @@ vh() {
 pb() {
   open -a Photo\ Booth
 }
+ob() {
+  open -a Obsidian
+}
 no() {
   open -a Notion
 }
