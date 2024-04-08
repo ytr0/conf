@@ -42,7 +42,9 @@ alias c.='code .'
 alias cjson='vi $HOME/Library/Application\ Support/Code/User/settings.json'
 alias mk='make'
 
-
+#platformio
+alias piol='pio device list'
+alias pioup='platformio run --target upload'
 
 #cargo
 export PATH="$HOME/.cargo/bin:$PATH"
