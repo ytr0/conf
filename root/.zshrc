@@ -136,8 +136,13 @@ alias gc='git add -A && aicommits -a'
 alias gp='git push -u origin'
 alias gcp='gc && gp'
 
+eval "$(gh completion -s zsh)"
+
 # git remote URL変更
-gr() {
+ghc() {
+  gh repo create $1 --private
+}
+grs() {
   git remote set-url origin git@github.com:ytr0/"$1".git
 }
 #git rm -r --cached {file_path} コミット時キャッシュの削除 / .gitignoreに追加したあと
@@ -177,7 +182,6 @@ alias tailscale="/Applications/Tailscale.app/Contents/MacOS/Tailscale"
 #for git
 #alias setup-git='git config --global user.name "ytr0221";git config --global user.email ytr0.ymail.ne.jp'
 alias gitset='git config --global user.name "ytr0";git config --global user.email yu20@iamas.ac.jp'
-alias ghc="~/ws/tools/git/repo_create.sh"
 alias ghm="~/ws/tools/git/memo.sh"
 alias ghp="~/ws/tools/git/commit_and_push.sh"
 # git rm -r --cached {file_path} コミット時キャッシュの削除
@@ -218,7 +222,7 @@ gpt() {
 ch() {
 	open -a Google\ Chrome
 }
-gh() {
+gho() {
 	open -a Google\ Chrome https://github.com/ytr0\?tab\=repositories
 }
 ml() {
