@@ -143,7 +143,15 @@ ghc() {
   gh repo create $1 --private
 }
 grs() {
+  git init
+  git commit -m "first commit"
+  git branch -M main
+  git remote add origin https://github.com/ytr0/"$1".git
   git remote set-url origin git@github.com:ytr0/"$1".git
+}
+gcam() {
+  git commit -am "$1"
+  git push -u origin main
 }
 #git rm -r --cached {file_path} コミット時キャッシュの削除 / .gitignoreに追加したあと
 alias gdel='git rm -r --cached' 
