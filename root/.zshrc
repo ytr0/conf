@@ -37,14 +37,15 @@ path=(
 )
 
 #vscode
-alias c='code' 
-alias c.='code .'
+alias c='cursor' 
 alias cjson='vi $HOME/Library/Application\ Support/Code/User/settings.json'
 alias mk='make'
 
 #platformio
 alias piol='pio device list'
 alias pioup='platformio run --target upload'
+
+alias monitor='pio device monitor'
 
 #cargo
 export PATH="$HOME/.cargo/bin:$PATH"
@@ -132,8 +133,9 @@ alias gpl='git pull'
 alias ga='git add .'
 
 # alias gc='git commit -am'
-alias gc='git add -A && aicommits -a'
+alias gc='aicommits -a'
 alias gp='git push -u origin'
+alias gr='git rm --cached -r'
 alias gcp='gc && gp'
 
 eval "$(gh completion -s zsh)"
